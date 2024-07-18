@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import ModelForm from './components/ModelForm.vue';
+import TeacherForm from './components/TeacherForm.vue'
 </script>
 
 <template>
-  <ModelForm />
+    <TeacherForm />
 </template>
 
 <style scoped></style>
