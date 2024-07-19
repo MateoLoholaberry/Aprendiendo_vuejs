@@ -12,7 +12,9 @@ const props = defineProps<{
     content: string;
 }>();
 
-const emits = defineEmits(['sayHello']);
+const emits = defineEmits<{
+    sayHello: [msg: string];
+}>();
 
 const handleClick = () => {
     emits('sayHello', `Hola desde el post detail, del ${props.title}`);
