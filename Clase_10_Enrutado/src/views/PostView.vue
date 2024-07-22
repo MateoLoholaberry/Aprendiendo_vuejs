@@ -13,3 +13,5 @@ onMounted(() => {
     postId.value = route.params.id
 })
 </script>
+
+<style></style>

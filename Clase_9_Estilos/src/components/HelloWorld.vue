@@ -12,12 +12,11 @@ defineProps<{
       <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
       <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
     </h3>
-    <button class="btn btn-success">Hola vue con bootstrap</button>
+    <button class="btn btn-warning">Hola vue con bootstrap</button>
   </div>
 </template>
 
 <style scoped lang="scss">
-
 h1 {
   font-weight: 500;
   font-size: 2.6rem;
