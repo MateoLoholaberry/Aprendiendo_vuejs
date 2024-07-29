@@ -1,6 +1,6 @@
 <template>
     <div class="container d-flex flex-column justify-content-center align-items-center">
-        <h1>Login</h1>
+        <h1>Login Tradicional</h1>
         <div class="mt-5 w-50">
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>

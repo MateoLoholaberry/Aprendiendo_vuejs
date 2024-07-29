@@ -1,6 +1,6 @@
 <template>
     <div class="container d-flex flex-column justify-content-center align-items-center">
-        <h1>Login</h1>
+        <h1>Login Firebase</h1>
         <div class="mt-5 w-50">
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
@@ -23,7 +23,7 @@
                 />
             </div>
             <div class="d-flex justify-content-end">
-                <button class="btn btn-primary" v-on:click="authUser">Ingresar</button>
+                <button class="btn btn-primary" @click="authUser()">Ingresar</button>
             </div>
         </div>
     </div>
@@ -31,19 +31,23 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import AuthService from '../Services/AuthService.ts';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
-let email = ref('');
-let password = ref('');
+const email = ref('');
+const password = ref('');
 
-const authUser = async () => {
-    const auth = new AuthService();
-    const successLogin = await auth.login(email.value, password.value);
-    if (successLogin) {
-        console.log('Usuario autenticado');
-    } else {
-        console.log('Usuario no autenticado');
-    }
+const authUser = () => {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email.value, password.value)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            console.log('Usuario autenticado con éxito:', user);
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log('No se pudo autenticar:', errorCode, errorMessage);
+        });
 };
 </script>
 

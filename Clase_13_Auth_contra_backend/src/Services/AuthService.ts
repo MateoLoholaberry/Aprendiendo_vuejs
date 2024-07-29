@@ -1,12 +1,20 @@
-import { ref } from 'vue';
+import { ref, type Ref } from 'vue';
 
-class AuthService {
+export default class AuthService {
+    private jwt: Ref<string>;
+    private Error: Ref<string>;
+
     constructor() {
-        this.jwt = ref();
+        this.jwt = ref('');
+        this.Error = ref('');
     }
 
-    getJwt() {
+    getJwt(): Ref<string> {
         return this.jwt;
+    }
+
+    getError(): Ref<string> {
+        return this.Error;
     }
 
     async login(email: string, password: string) {
@@ -28,6 +36,14 @@ class AuthService {
             });
 
             const data = await response.json();
+
+            if (data.error) {
+                this.Error.value = 'Usuario o contraseña incorrectos';
+                return false;
+            }
+
+            this.jwt.value = data.data.access_token;
+            return true;
         } catch (error) {
             console.log(error);
         }
