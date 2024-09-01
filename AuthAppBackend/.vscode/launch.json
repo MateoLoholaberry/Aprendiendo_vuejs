@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "name": "C#: AuthAppBackend [Default Configuration]",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}\\AuthAppBackend\\AuthAppBackend.csproj"
+        }
+    ]
+}

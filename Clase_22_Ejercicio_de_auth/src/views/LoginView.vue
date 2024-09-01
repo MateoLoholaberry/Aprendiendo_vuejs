@@ -25,6 +25,9 @@
             <div class="d-flex justify-content-end">
                 <button class="btn btn-primary" @click="authUser()">Ingresar</button>
             </div>
+            <div class="mt-3">
+                <p class="text-danger">{{ feedback }}</p>
+            </div>
         </div>
         <p>¿No tienes una cuenta?</p>
         <router-link :to="{ name: 'register' }">Registrate</router-link>
@@ -39,6 +42,7 @@ import router from '@/router';
 const authStore = useAuthStore();
 let email = ref('');
 let password = ref('');
+let feedback = ref('');
 
 const authUser = async () => {
     const response = await authStore.login(email.value, password.value);
@@ -48,6 +52,7 @@ const authUser = async () => {
         authStore.user = email.value;
         router.push({ name: 'list' });
     } else {
+        feedback.value = 'No se pudo autenticar el usuario';
         console.log('Error al autenticar usuario');
     }
 };

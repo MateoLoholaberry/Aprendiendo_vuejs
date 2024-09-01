@@ -71,6 +71,8 @@ const useAuthStore = defineStore('authStore', {
             });
 
             const Response = await rawResponse.json();
+            console.log(Response);
+            return Response;
         },
         async createNotes(title: string, contenido: string) {
             const uri = `${this.baseUrl}/notes`;
@@ -88,7 +90,14 @@ const useAuthStore = defineStore('authStore', {
                 })
             });
 
-            const Response = await rawResponse.json();
+            console.log(rawResponse);
+            if (rawResponse.status == 400) {
+                console.log('Ha ocurrido un error');
+                return false;
+            } else {
+                console.log('Usuario logueado correctamente');
+                return true;
+            }
         }
     }
 });
