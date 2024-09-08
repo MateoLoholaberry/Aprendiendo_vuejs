@@ -2,15 +2,23 @@
     <h1>Listado de usuarios</h1>
 
     <div>
-        <button>Ver en lista</button>
-        <button>Ver en tarjetas</button>
-        <button>Ver en tabla</button>
+        <button @click="handleLayout(ListLayout)">Ver en lista</button>
+        <button @click="handleLayout(GridLayout)">Ver en tarjetas</button>
+        <button @click="handleLayout(TableLayout)">Ver en tabla</button>
     </div>
     <component :is="layout" :content="users" />
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, defineAsyncComponent } from 'vue';
+
+const ListLayout = defineAsyncComponent(() => import('@/layouts/ListLayout.vue'));
+const TableLayout = defineAsyncComponent(() => import('@/layouts/TableLayout.vue'));
+const GridLayout = defineAsyncComponent(() => import('@/layouts/CardLayout.vue'));
+
+const layout = ref(ListLayout);
+
+const handleLayout = (newLayout) => (layout.value = newLayout);
 
 const users = ref([
     {
